@@ -191,3 +191,36 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.
 sudo apt-get update
 sudo apt-get install helm
 
+
+cd /tmp
+
+# 🔐 Installing Kubesec
+wget https://github.com/controlplaneio/kubesec/releases/download/v2.14.2/kubesec_linux_amd64.tar.gz
+
+tar -xzvf kubesec_linux_amd64.tar.gz
+
+sudo mv kubesec /usr/bin/
+
+
+# 🔐 Installing Conftest
+LATEST_VERSION=$(wget -O - "https://api.github.com/repos/open-policy-agent/conftest/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/' | cut -c 2-)
+ARCH=$(arch)
+SYSTEM=$(uname)
+
+wget "https://github.com/open-policy-agent/conftest/releases/download/v${LATEST_VERSION}/conftest_${LATEST_VERSION}_${SYSTEM}_${ARCH}.tar.gz"
+tar xzf conftest_${LATEST_VERSION}_${SYSTEM}_${ARCH}.tar.gz
+
+sudo mv conftest /usr/local/bin
+
+
+# 🔐 Installing Kubelinter
+wget https://github.com/stackrox/kube-linter/releases/download/v0.7.1/kube-linter-linux.tar.gz
+
+tar -xzvf kube-linter-linux.tar.gz
+
+sudo mv kube-linter /usr/bin/
+
+# 🔐 Installling AppArmor
+sudo apt install apparmor-profiles
+sudo apt install apparmor-utils -y
+

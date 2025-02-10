@@ -117,3 +117,8 @@ sudo systemctl enable --now kubelet
 sudo chown root:root /opt/cni/bin
 
 
+
+# 🔐 Installling AppArmor
+sudo apt install apparmor-profiles
+sudo apt install apparmor-utils -y
+
