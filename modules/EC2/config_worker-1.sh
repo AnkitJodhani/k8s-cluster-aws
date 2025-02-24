@@ -121,5 +121,9 @@ sudo apt install apparmor-profiles
 sudo apt install apparmor-utils -y
 
 
+# 🔐 Installling Kube-bench
+KUBE_BENCH_VERSION=0.10.1
+curl -L https://github.com/aquasecurity/kube-bench/releases/download/v${KUBE_BENCH_VERSION}/kube-bench_${KUBE_BENCH_VERSION}_linux_amd64.deb -o kube-bench_${KUBE_BENCH_VERSION}_linux_amd64.deb
+sudo apt install ./kube-bench_${KUBE_BENCH_VERSION}_linux_amd64.deb -f
 
 
